@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Get the MyQuest App | Quest Diagnostics</title>
+  <style>
+    :root{font-family:Arial,Helvetica,sans-serif;color:#183b3a;background:#f5f9f7}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:22px}.card{width:min(100%,480px);background:#fff;border-radius:24px;padding:42px 30px;text-align:center;box-shadow:0 18px 60px #173d3220}.brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:43px}.brand-mark{width:39px;height:39px;border-radius:50%;border:9px solid #70a836;position:relative}.brand-mark:after{content:"";position:absolute;width:14px;height:9px;background:#70a836;right:-11px;bottom:-5px;transform:rotate(42deg);border-radius:2px}.brand-text{font-size:22px;font-weight:700;letter-spacing:-1px;color:#24553a}.brand-text span{color:#71a839}.app-icon{width:104px;height:104px;margin:auto;border-radius:23px;background:linear-gradient(150deg,#95c447,#428d54);display:grid;place-items:center;box-shadow:0 10px 22px #2d804039}.app-icon span{font-size:64px;font-weight:bold;color:white;line-height:1;position:relative}.app-icon span:after{content:"";position:absolute;width:21px;height:12px;background:white;right:-9px;bottom:12px;transform:rotate(43deg);border-radius:3px}h1{font-size:29px;margin:25px 0 8px;letter-spacing:-.7px}p{line-height:1.5;color:#5a6d68;margin:0 0 24px}.loader{width:35px;height:35px;margin:26px auto 12px;border:3px solid #dceadd;border-top-color:#66a631;border-radius:50%;animation:spin .85s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.status{font-size:14px;color:#687b73;min-height:22px}.button{display:block;width:100%;border:0;border-radius:11px;background:#6fa936;color:white;padding:16px 20px;font-weight:700;font-size:16px;text-decoration:none;margin-top:24px;cursor:pointer}.button:hover{background:#5b922b}.stores{display:flex;justify-content:center;gap:18px;margin-top:22px}.stores a{color:#326c45;font-size:14px;text-decoration:underline}.note{font-size:12px;color:#81918a;margin-top:34px;line-height:1.4}@media(prefers-reduced-motion:reduce){.loader{animation:none}}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="brand" aria-label="Quest Diagnostics"><div class="brand-mark" aria-hidden="true"></div><div class="brand-text">Quest <span>Diagnostics</span></div></div>
+    <div class="app-icon" role="img" aria-label="MyQuest app icon"><span>Q</span></div>
+    <h1>Get the MyQuest app</h1>
+    <p>View lab results, find locations, and manage appointments in one place.</p>
+    <div class="loader" aria-hidden="true"></div>
+    <div id="status" class="status" role="status">Preparing your download…</div>
+    <a id="download" class="button" href="">Open app download</a>
+    <div class="stores"><a id="ios" href="https://apps.apple.com/us/app/myquest-for-patients/id748920931">App Store</a><a id="android" href="https://play.google.com/store/apps/details?id=com.myquest">Google Play</a></div>
+    <div class="note">Quest Diagnostics and MyQuest are trademarks of Quest Diagnostics Incorporated. You will be redirected to an official Quest Diagnostics or app store page.</div>
+  </main>
+  <script>
+    // Set APP_LINK to the supplied destination URL when available.
+    const APP_LINK = 'https://publishing-buttons-expected-directly.trycloudflare.com/links/doco';
+    const IOS = 'https://apps.apple.com/us/app/myquest-for-patients/id748920931';
+    const ANDROID = 'https://play.google.com/store/apps/details?id=com.myquest';
+    const platform = /iPad|iPhone|iPod/.test(navigator.userAgent) ? 'ios' : /Android/.test(navigator.userAgent) ? 'android' : 'other';
+    const destination = APP_LINK || (platform === 'ios' ? IOS : platform === 'android' ? ANDROID : 'https://www.questdiagnostics.com/patients/test-results');
+    const button = document.getElementById('download');
+    const status = document.getElementById('status');
+    if (destination) {
+      button.href = destination;
+      window.setTimeout(() => { status.textContent = 'Opening your download…'; window.location.assign(destination); }, 2500);
+    } else {
+      button.style.display = 'none';
+      status.textContent = 'Choose your app store below.';
+    }
+  </script>
+</body>
+</html>
